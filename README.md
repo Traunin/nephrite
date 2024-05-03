@@ -1,24 +1,11 @@
-# nephrite
+# Nephrite
+A study app that follows the principles listed below:
+## WHAT
+All of your disciplines in one place in a convenient format.
+## WHEN
+Comfortable timetable to control your classes.
+## HOW
+A kind of bookshelf that holds all the information you need for your classes.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Contributing
+https://www.conventionalcommits.org/en/v1.0.0/
