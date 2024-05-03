@@ -1,10 +1,19 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <button @click="toggleDark()">Toggle dark mode</button>
+    <router-link to="/">Timetable</router-link> |
+    <router-link to="/documents">Documents</router-link> |
+    <router-link to="/classes">Classess</router-link> |
   </nav>
   <router-view />
 </template>
+
+<script setup lang="ts">
+import { useDark, useToggle } from '@vueuse/core';
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+</script>
 
 <style>
 #app {
