@@ -3,9 +3,11 @@
     <button @click="toggleDark()">Toggle dark mode</button>
     <router-link to="/">Timetable</router-link> |
     <router-link to="/documents">Documents</router-link> |
-    <router-link to="/classes">Classess</router-link> |
+    <router-link to="/classes">Classes</router-link>
   </nav>
-  <router-view />
+  <div class="content">
+    <router-view />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -16,24 +18,25 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
 nav {
   padding: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--link-color);
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
 }
 </style>
