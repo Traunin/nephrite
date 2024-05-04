@@ -68,6 +68,10 @@ function resetDate(): void {
   gap: 10px;
   justify-content: space-between;
   align-items: center;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .calendar-controller span {
