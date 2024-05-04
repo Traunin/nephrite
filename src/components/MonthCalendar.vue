@@ -17,7 +17,12 @@
           surroundingMonth:
             (index == 0 && date > 20) || (index > 2 && date < 10),
           currentDay: props.month == month && props.year == year && date == day,
+          selected:
+            props.month == clickedMonth &&
+            props.year == clickedYear &&
+            date == clickedDay,
         }"
+        @click="setClickedDate(date, props.month, props.year)"
       >
         {{ date }}
       </td>
@@ -37,6 +42,10 @@ const day = ref(0)
 const month = ref(0)
 const year = ref(0)
 
+const clickedDay = ref(0)
+const clickedMonth = ref(0)
+const clickedYear = ref(0)
+
 setInterval(() => {
   updateTime()
 }, 1000)
@@ -50,12 +59,18 @@ function updateTime(): void {
   year.value = currentDate.getFullYear()
 }
 
+function setClickedDate(day: number, month: number, year: number): void {
+  clickedDay.value = day
+  clickedMonth.value = month
+  clickedYear.value = year
+}
+
 const calendar = computed(() => generateCalendar(props.month + 1, props.year))
 </script>
 
 <style scoped>
 td {
-  padding: 3px 11px 12px 11px;
+  padding: 5px 11px 12px 11px;
   text-align: center;
   font-size: 0.8em;
   cursor: pointer;
@@ -82,5 +97,9 @@ th {
 
 .currentDay {
   color: rgb(138, 92, 245);
+}
+
+.selected {
+  background-color: rgb(138, 92, 245) !important;
 }
 </style>
