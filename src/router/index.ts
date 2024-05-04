@@ -13,13 +13,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/classes',
     name: 'classes',
-    component: DocumentsView,
+    component: ClassesView,
   },
 
   {
     path: '/documents',
     name: 'documents',
-    component: ClassesView,
+    component: DocumentsView,
   },
 ]
 
