@@ -20,9 +20,10 @@
           selected:
             props.month == clickedMonth &&
             props.year == clickedYear &&
-            date == clickedDay,
+            date == clickedDay &&
+            index == clickedIndex,
         }"
-        @click="setClickedDate(date, props.month, props.year)"
+        @click="setClickedDate(date, props.month, props.year, index)"
       >
         {{ date }}
       </td>
@@ -45,6 +46,7 @@ const year = ref(0)
 const clickedDay = ref(0)
 const clickedMonth = ref(0)
 const clickedYear = ref(0)
+const clickedIndex = ref(0)
 
 setInterval(() => {
   updateTime()
@@ -59,8 +61,28 @@ function updateTime(): void {
   year.value = currentDate.getFullYear()
 }
 
-function setClickedDate(day: number, month: number, year: number): void {
+function setClickedDate(
+  day: number,
+  month: number,
+  year: number,
+  index: number
+): void {
   clickedDay.value = day
+  clickedIndex.value = index
+  if (index == 0 && day > 20) {
+    month--
+    if (month < 0) {
+      month = 11
+      year--
+    }
+  } else if (index > 2 && day < 10) {
+    month++
+    if (month > 11) {
+      month = 0
+      year++
+    }
+  }
+  console.log(day, month, year)
   clickedMonth.value = month
   clickedYear.value = year
 }
@@ -89,6 +111,10 @@ td:hover {
 th {
   padding-bottom: 10px;
   font-size: 0.8em;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .surroundingMonth {
