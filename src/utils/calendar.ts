@@ -14,7 +14,7 @@ export function generateCalendar(
     .map(() => new Array(7).fill(0))
 
   for (let i: number = dayOfTheWeek - 1; i >= 0; i--) {
-    calendarSheet[0][i] = getDate(daysInAPreviousMonth, month - 1, year)
+    calendarSheet[0][i] = getDate(daysInAPreviousMonth, month - 2, year)
     daysInAPreviousMonth--
   }
 
@@ -22,7 +22,7 @@ export function generateCalendar(
   let c: number = dayOfTheWeek
 
   for (let day = 1; day <= daysInCurrentMonth; day++) {
-    calendarSheet[r][c] = getDate(day, month, year)
+    calendarSheet[r][c] = getDate(day, month - 1, year)
     c++
     r = r + Math.floor(c / 7)
     c %= 7
@@ -30,7 +30,7 @@ export function generateCalendar(
 
   let day = 1
   for (; c <= 6 && r < lines; c++) {
-    calendarSheet[r][c] = getDate(day, month + 1, year)
+    calendarSheet[r][c] = getDate(day, month, year)
     day++
   }
   return calendarSheet

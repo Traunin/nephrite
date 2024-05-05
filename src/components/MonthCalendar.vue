@@ -14,7 +14,7 @@
         v-for="date in row"
         :key="date.day"
         :class="{
-          surroundingMonth: date.month != month + 1,
+          surroundingMonth: date.month != month,
           currentDay:
             date.month == currentMonth + 1 &&
             date.year == currentYear &&
