@@ -1,15 +1,20 @@
-export function generateCalendar(month: number, year: number): number[][] {
+import { CalendarDate, getDate } from '@/utils/calendar-date'
+
+export function generateCalendar(
+  month: number,
+  year: number
+): CalendarDate[][] {
   let daysInAPreviousMonth: number = getDaysInAMonth(month - 1, year)
   const daysInCurrentMonth: number = getDaysInAMonth(month, year)
   const dayOfTheWeek: number = getDayOfTheWeek(month, year)
 
   const lines = Math.ceil((dayOfTheWeek + daysInCurrentMonth) / 7)
-  const calendarSheet: number[][] = new Array(lines)
+  const calendarSheet: CalendarDate[][] = new Array(lines)
     .fill(0)
     .map(() => new Array(7).fill(0))
 
   for (let i: number = dayOfTheWeek - 1; i >= 0; i--) {
-    calendarSheet[0][i] = daysInAPreviousMonth
+    calendarSheet[0][i] = getDate(daysInAPreviousMonth, month - 1, year)
     daysInAPreviousMonth--
   }
 
@@ -17,7 +22,7 @@ export function generateCalendar(month: number, year: number): number[][] {
   let c: number = dayOfTheWeek
 
   for (let day = 1; day <= daysInCurrentMonth; day++) {
-    calendarSheet[r][c] = day
+    calendarSheet[r][c] = getDate(day, month, year)
     c++
     r = r + Math.floor(c / 7)
     c %= 7
@@ -25,7 +30,7 @@ export function generateCalendar(month: number, year: number): number[][] {
 
   let day = 1
   for (; c <= 6 && r < lines; c++) {
-    calendarSheet[r][c] = day
+    calendarSheet[r][c] = getDate(day, month + 1, year)
     day++
   }
   return calendarSheet
