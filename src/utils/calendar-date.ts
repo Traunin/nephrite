@@ -18,9 +18,9 @@ export function getDate(
   }
 
   return {
-    day: day,
-    month: month,
-    year: year,
+    day,
+    month,
+    year,
   }
 }
 
