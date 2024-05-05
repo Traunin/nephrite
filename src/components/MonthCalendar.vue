@@ -12,20 +12,19 @@
     <tr v-for="(row, index) in calendar" :key="index">
       <td
         v-for="date in row"
-        :key="date"
+        :key="date.day"
         :class="{
-          surroundingMonth:
-            (index == 0 && date > 20) || (index > 2 && date < 10),
-          currentDay: props.month == month && props.year == year && date == day,
-          selected:
-            props.month == clickedMonth &&
-            props.year == clickedYear &&
-            date == clickedDay &&
-            index == clickedIndex,
+          surroundingMonth: date.month != month + 1,
+          currentDay:
+            date.month == currentMonth + 1 &&
+            date.year == currentYear &&
+            date.day == currentDay &&
+            month == currentMonth,
+          selected: clickedDate && isSameDate(date, clickedDate),
         }"
-        @click="setClickedDate(date, props.month, props.year, index)"
+        @click="setClickedDate(date)"
       >
-        {{ date }}
+        {{ date.day }}
       </td>
     </tr>
   </table>
@@ -34,19 +33,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { generateCalendar } from '@/utils/calendar'
+import { CalendarDate, isSameDate } from '@/utils/calendar-date'
+
 const props = defineProps<{
   month: number
   year: number
 }>()
 
-const day = ref(0)
-const month = ref(0)
-const year = ref(0)
-
-const clickedDay = ref(0)
-const clickedMonth = ref(0)
-const clickedYear = ref(0)
-const clickedIndex = ref(0)
+const currentDay = ref(0)
+const currentMonth = ref(0)
+const currentYear = ref(0)
 
 setInterval(() => {
   updateTime()
@@ -56,35 +52,16 @@ updateTime()
 
 function updateTime(): void {
   let currentDate: Date = new Date()
-  day.value = currentDate.getDate()
-  month.value = currentDate.getMonth()
-  year.value = currentDate.getFullYear()
+  currentDay.value = currentDate.getDate()
+  currentMonth.value = currentDate.getMonth()
+  currentYear.value = currentDate.getFullYear()
 }
 
-function setClickedDate(
-  day: number,
-  month: number,
-  year: number,
-  index: number
-): void {
-  clickedDay.value = day
-  clickedIndex.value = index
-  if (index == 0 && day > 20) {
-    month--
-    if (month < 0) {
-      month = 11
-      year--
-    }
-  } else if (index > 2 && day < 10) {
-    month++
-    if (month > 11) {
-      month = 0
-      year++
-    }
-  }
-  console.log(day, month, year)
-  clickedMonth.value = month
-  clickedYear.value = year
+const clickedDate = ref()
+
+function setClickedDate(date: CalendarDate): void {
+  clickedDate.value = date
+  console.log(clickedDate.value)
 }
 
 const calendar = computed(() => generateCalendar(props.month + 1, props.year))
@@ -129,3 +106,4 @@ th {
   background-color: rgb(138, 92, 245) !important;
 }
 </style>
+@/utils/calendar-date
