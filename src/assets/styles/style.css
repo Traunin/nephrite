@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 html {
-  --background-color: #fff;
-  --link-color: #2c3e50;
+  --text: #131e0b;
+  --background: #f4fbf4;
+  --primary: #a1e3a6;
+  --secondary: #4eb7ac;
+  --accent: #00e677;
 }
 
 html.dark {
-  --background-color: rgb(38, 38, 38);
-  --text-color: rgb(218, 218, 218);
-  --link-color: #d3c1af;
+  --text: #e9f4e1;
+  --background: #040b04;
+  --primary: #1c5e22;
+  --secondary: #48b1a7;
+  --accent: #1aff90;
 }
 
 body {
