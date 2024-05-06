@@ -84,7 +84,7 @@ function resetDate(): void {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--text);
   font-size: 1.3em;
 }
 </style>
