@@ -31,3 +31,7 @@ export function isSameDate(date1: CalendarDate, date2: CalendarDate): boolean {
     date1.year == date2.year
   )
 }
+
+export function getAsString(date: CalendarDate): string {
+  return date.day + '_' + date.month + '_' + date.year
+}
