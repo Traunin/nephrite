@@ -69,7 +69,10 @@ const calendar = computed(() => generateCalendar(props.month + 1, props.year))
 
 <style scoped>
 td {
-  padding: 5px 11px 12px 11px;
+  box-sizing: border-box;
+  padding: 5px 11px 0 11px;
+  height: 34px;
+  vertical-align: top;
   text-align: center;
   font-size: 0.8em;
   cursor: pointer;
@@ -81,7 +84,7 @@ td {
 }
 
 td:hover {
-  background: rgb(63, 63, 63);
+  background: var(--primary);
   transition: background 0.05s;
 }
 
@@ -95,15 +98,14 @@ th {
 }
 
 .surroundingMonth {
-  color: rgb(76, 76, 76);
+  color: var(--text-500);
 }
 
 .currentDay {
-  color: rgb(138, 92, 245);
+  color: var(--accent);
 }
 
 .selected {
-  background-color: rgb(138, 92, 245) !important;
+  background-color: var(--accent) !important;
 }
 </style>
-@/utils/calendar-date
