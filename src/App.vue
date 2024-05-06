@@ -27,12 +27,12 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: var(--link-color);
   text-decoration: none;
+  color: var(--text);
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: var(--accent);
 }
 
 .content {
