@@ -16,7 +16,7 @@
         :class="{
           surroundingMonth: date.month != month,
           currentDay:
-            date.month == currentMonth + 1 &&
+            date.month == currentMonth &&
             date.year == currentYear &&
             date.day == currentDay &&
             month == currentMonth,
